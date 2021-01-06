@@ -16,7 +16,7 @@ public class ProductService {
 	@Autowired	
 	private ProductRepository repo;
 	
-	private List<ProductDTO> findAll() {
+	public List<ProductDTO> findAll() {
 		List<Product> products = repo.findAll();
 		return products.stream().map(p -> new ProductDTO(p)).collect(Collectors.toList());
 	}
