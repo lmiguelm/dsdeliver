@@ -1,41 +1,37 @@
-package com.lmiguelm.dsdeliver.entites;
+package com.lmiguelm.dsdeliver.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.lmiguelm.dsdeliver.entites.Product;
 
-@Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
+public class ProductDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
-	
 	private Double price;
-	
 	private String description;
-	
 	private String imageUri;
 	
-	public Product() {
+	public ProductDTO() {
+		
 	}
-	
 
-	public Product(Long id, String name, Double price, String description, String imageUrl) {
+	public ProductDTO(Long id, String name, Double price, String description, String imageUri) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.description = description;
-		this.imageUri = imageUrl;
+		this.imageUri = imageUri;
+	}
+	
+	public ProductDTO(Product obj) {
+		id = obj.getId();
+		name = obj.getName();
+		price = obj.getPrice();
+		description = obj.getDescription();
+		imageUri = obj.getImageUri();
 	}
 
 	public Long getId() {
@@ -74,8 +70,12 @@ public class Product implements Serializable {
 		return imageUri;
 	}
 
-	public void setImageUri(String imageUrl) {
-		this.imageUri = imageUrl;
+	public void setImageUri(String imageUri) {
+		this.imageUri = imageUri;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class Product implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		ProductDTO other = (ProductDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -102,5 +102,5 @@ public class Product implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
