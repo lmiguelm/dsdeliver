@@ -24,7 +24,7 @@ public class Product implements Serializable {
 	
 	private String description;
 	
-	private String imageUrl;
+	private String imageUri;
 	
 	public Product() {
 	}
@@ -35,7 +35,7 @@ public class Product implements Serializable {
 		this.name = name;
 		this.price = price;
 		this.description = description;
-		this.imageUrl = imageUrl;
+		this.imageUri = imageUrl;
 	}
 
 	public Long getId() {
@@ -71,11 +71,11 @@ public class Product implements Serializable {
 	}
 
 	public String getImageUrl() {
-		return imageUrl;
+		return imageUri;
 	}
 
 	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+		this.imageUri = imageUrl;
 	}
 
 	@Override
