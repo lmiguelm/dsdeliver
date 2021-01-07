@@ -2,8 +2,10 @@ package com.lmiguelm.dsdeliver.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.lmiguelm.dsdeliver.entites.Order;
 import com.lmiguelm.dsdeliver.entites.Product;
@@ -19,7 +21,8 @@ public class OrderDTO implements Serializable {
 	private Instant moment;
 	private OrderStatus status;
 	private Double total;
-	private Set<Product> products = new HashSet<>();
+	private List<ProductDTO> products = new ArrayList<>();
+
 	
 	public OrderDTO() {
 	}
@@ -42,7 +45,7 @@ public class OrderDTO implements Serializable {
 		moment = obj.getMoment();
 		status = obj.getStatus();
 		total = obj.getTotal();
-		products = obj.getProducts();
+		products = obj.getProducts().stream().map(p -> new ProductDTO(p)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
@@ -105,7 +108,7 @@ public class OrderDTO implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Set<Product> getProducts() {
+	public List<ProductDTO> getProducts() {
 		return products;
 	}
 
